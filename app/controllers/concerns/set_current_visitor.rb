@@ -2,7 +2,7 @@
 module SetCurrentVisitor
     extend ActiveSupport::Concern
 
-    include do
+    included do
         before_action :set_current_visitor
     end
 
@@ -20,6 +20,7 @@ module SetCurrentVisitor
             user_agent: request.user_agent
         )
         session[:visitor_id] = visitor.id
+
         visitor
     end
 end

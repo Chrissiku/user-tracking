@@ -1,3 +1,3 @@
 class Current < ActiveSupport::CurrentAttributes
-    attribute: visitor
+    attribute :visitor
 end
