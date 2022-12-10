@@ -33,7 +33,7 @@ class Visitor < ApplicationRecord
           )
           .sort
     end
-        
+
     def self.total_time_on_site_for_visitor(visitor)
       time_on_site_for_visitor(visitor).sum(
         Arel.sql("EXTRACT(EPOCH FROM (upper_bounds - lower_bounds))")
@@ -46,4 +46,7 @@ class Visitor < ApplicationRecord
       )
     end
 
+    def self.delete_all_older_than(timestamp)
+      destroy_by("created_at < ?", timestamp)
+    end
 end
