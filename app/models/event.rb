@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
-  serialize :params, Hash
-  belongs_to :visitor  
+  serialize :params
+  belongs_to :visitor
 
   def self.page_views
     select(:path)
