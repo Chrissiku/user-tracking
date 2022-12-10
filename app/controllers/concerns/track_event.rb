@@ -3,12 +3,14 @@ module TrackEvent
     extend ActiveSupport::Concern
 
     def track_event
-        CreateEventJob.perform_later(
-            visitor: current.visitor,
-            path: request.path,
-            method: request.method,
-            params: filter_sensitive_data(event_params)
-        )
+        if session[:enable_analytics] == true        
+            CreateEventJob.perform_later(
+                visitor: current.visitor,
+                path: request.path,
+                method: request.method,
+                params: filter_sensitive_data(event_params)
+            )
+        end
     end
 
     private

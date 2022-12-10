@@ -3,7 +3,7 @@ module SetCurrentVisitor
     extend ActiveSupport::Concern
 
     included do
-        before_action :set_current_visitor
+        before_action :set_current_visitor, if: :should_set_current_visitor?
     end
 
     private
@@ -22,5 +22,9 @@ module SetCurrentVisitor
         session[:visitor_id] = visitor.id
 
         visitor
+    end
+
+    def should_set_current_visitor?
+        session[:enable_analytics] == true
     end
 end
