@@ -1,17 +1,17 @@
-<%= form_with(url: root_path, method: "GET", data: { turbo_frame: "searches" }) do |form| %>
+<%= form_with(url: root_path, method: "GET", data: { turbo_frame: "searches", turbo_action: "advance" }) do |form| %>
     <%= form.label :query, "Search here : " %>
     <%= form.text_field :query %>
     <%= form.submit "Search", name: nil %>
 <% end %>
 
-<%= render "searches", searches: @all_searches %>
+<%= render "searches", searches: @searches %>
 
 <% # <div id="searches"> %>
-    <% # if @all_searches.empty? %>
+    <% # if @searches.empty? %>
         <% # <p>Seach history is emply</p> %>
     <% # else %>
         <% # <p>Suggestions</p> %>
-        <% # @all_searches.each do |seach| %>
+        <% # @searches.each do |seach| %>
             <% #= render seach %>
         <% # end %>
     <% # end %>

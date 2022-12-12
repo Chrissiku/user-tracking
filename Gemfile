@@ -74,5 +74,3 @@ end
 gem "dotenv-rails", "~> 2.8"
 
 gem "standard", "~> 1.19"
-
-gem "faker", "~> 3.0"

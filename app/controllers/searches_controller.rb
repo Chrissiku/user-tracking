@@ -6,24 +6,20 @@ class SearchesController < ApplicationController
   def index
 
     if params[:query].present?
-      @all_searches = Search.where("input LIKE ?", "%#{params[:query]}%")
+      @searches = Search.where("input LIKE ?", "%#{params[:query]}%")
  
-        @search = Search.new(input: params[:query], visitor_id: session[:visitor_id])
-        @search.save
+        # @search = Search.new(input: params[:query], visitor_id: session[:visitor_id])
+        # @search.save
     
     else
-      @all_searches = Search.all
+      @searches = Search.all
     end
 
-
-    @current_visitor = session[:visitor_id]
-
     if turbo_frame_request?
-      render partial: "searches", locals: { searches: @all_searches }
+      render partial: "searches", locals: { searches: @searches }
     else
       render "index"
     end
-
   end
 
   def create
