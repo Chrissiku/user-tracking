@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_12_082214) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_12_104058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "path"
-    t.string "method"
+    t.string "path", null: false
+    t.string "method", null: false
     t.string "params"
     t.bigint "visitor_id", null: false
     t.datetime "created_at", null: false
@@ -29,14 +29,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_082214) do
     t.bigint "visitor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "count", default: 1
     t.index ["visitor_id"], name: "index_searches_on_visitor_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
+    t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "visitors", force: :cascade do |t|
@@ -47,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_082214) do
     t.index ["user_id"], name: "index_visitors_on_user_id"
   end
 
-  add_foreign_key "events", "visitors"
+  add_foreign_key "events", "visitors", on_delete: :cascade
   add_foreign_key "searches", "visitors"
-  add_foreign_key "visitors", "users"
+  add_foreign_key "visitors", "users", on_delete: :cascade
 end

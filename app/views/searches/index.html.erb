@@ -1,18 +1,7 @@
-<%= form_with(url: root_path, method: "GET", data: { turbo_frame: "searches", turbo_action: "advance" }) do |form| %>
+<%= form_with(url: root_path, method: "GET", data: { controller: "form-submission", turbo_frame: "searches", turbo_action: "advance" }) do |form| %>
     <%= form.label :query, "Search here : " %>
-    <%= form.text_field :query %>
+    <%= form.text_field :query, data: { action: "input->form-submission#search" } %>
     <%= form.submit "Search", name: nil %>
 <% end %>
 
 <%= render "searches", searches: @searches %>
-
-<% # <div id="searches"> %>
-    <% # if @searches.empty? %>
-        <% # <p>Seach history is emply</p> %>
-    <% # else %>
-        <% # <p>Suggestions</p> %>
-        <% # @searches.each do |seach| %>
-            <% #= render seach %>
-        <% # end %>
-    <% # end %>
-<% # </div> %>

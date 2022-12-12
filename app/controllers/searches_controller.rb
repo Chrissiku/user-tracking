@@ -8,8 +8,8 @@ class SearchesController < ApplicationController
     if params[:query].present?
       @searches = Search.where("input LIKE ?", "%#{params[:query]}%")
  
-        # @search = Search.new(input: params[:query], visitor_id: session[:visitor_id])
-        # @search.save
+        @search = Search.new(input: params[:query], visitor_id: session[:visitor_id])
+        @search.save
     
     else
       @searches = Search.all
