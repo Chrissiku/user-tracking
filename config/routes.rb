@@ -1,5 +1,6 @@
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  get 'searches/index'
   root "pages#home"
   # get 'pages/contact'
   post "contacts", to: "pages#contact", as: :contact

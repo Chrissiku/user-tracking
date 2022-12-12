@@ -1,6 +1,7 @@
 class Visitor < ApplicationRecord
   belongs_to :user, optional: true
   has_many :events
+  has_many :searches
 
   scope :time_on_site_for_visitor, ->(visitor) {
     select("lower_bounds, upper_bounds")
